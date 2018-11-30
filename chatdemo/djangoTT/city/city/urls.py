@@ -1,4 +1,4 @@
-"""imsnlp URL Configuration
+"""city URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -18,7 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sentiment/', include('Sentiment.urls')),
-    path('chatbot/', include('Chatbot.urls')),
-    path('blogpost/', include('BlogPost.urls')),
+	path('chatbot/', include('chatbot.urls')),
 ]

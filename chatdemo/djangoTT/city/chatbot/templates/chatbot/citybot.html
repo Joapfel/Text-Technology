@@ -1,0 +1,21 @@
+{% load static %}
+<h1> Welcome to the city bot!</h1>
+<p>Ask me something like: "What is the temperature today in Stuttgart?"</p>
+
+<hr>
+<div id="chatcontent"> </div>
+
+<br>
+
+<input id="message" placeholder="Type here.." autocomplete="off" autofocus/>
+<button>Send</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script> 
+	$.ajaxSetup({ data: {csrfmiddlewaretoken: '{{csrf_token}}'}});
+
+</script>
+
+<script src="{% static 'js/citybot.js' %}"></script>
