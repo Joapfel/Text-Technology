@@ -1,0 +1,7 @@
+﻿{
+  "name": "Charmander",
+  "type": "Fire",
+  "height": "0.6",
+  "region": "Kanto",
+  "generation": "1"
+}

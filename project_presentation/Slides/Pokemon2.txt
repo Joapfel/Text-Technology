@@ -1,0 +1,18 @@
+﻿{
+  "name": "Zigzagoon",
+  "pokedex_number": "#263",
+  "type": "Normal",
+  "height": "0.4",
+  "region": "Hoenn",
+  "generation": "3",
+  "stats":
+  {
+  	"HP": "38",
+    "Attack": "30",
+    "Defense": "31",
+    "Sp.Atk": "30",
+    "Sp.Def": "31",
+    "Speed": "60",
+    "Total": "240"
+  }
+}

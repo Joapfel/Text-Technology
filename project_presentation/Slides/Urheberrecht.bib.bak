@@ -1,0 +1,23 @@
+% Encoding: UTF-8
+
+@Electronic{RightsManaged,
+  url = {https://en.wikipedia.org/wiki/Rights_Managed},
+}
+
+@Electronic{Lizenzfreiheit,
+  url = {https://de.wikipedia.org/wiki/Lizenzfreiheit},
+}
+
+@Electronic{BildKunst,
+  url = {http://www.bildkunst.de/vg-bild-kunst/taetigkeitsbereiche/ausnahmen-und-schrankenregelungen-im-urheberrecht.html},
+}
+
+@Electronic{Urheberschaft,
+  url = {http://www.uni-potsdam.de/emoon/urheberrecht/grundlagen-des-urheberrechts/werke-rechte-urheberschaft/},
+}
+
+@Electronic{JuraForum,
+  url = {http://www.juraforum.de/lexikon/urheberrecht},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

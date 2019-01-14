@@ -1,0 +1,140 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{subcaption}
+
+\title{Elasticsearch presentation}
+\author{University Stuttgart | IMS \newline Course: Texttechnology \newline Superviser: Andre Blessing \newline Students: Brandon Sorensen, Haywood Shannon, \newline Johannes Krämer, King DeLaney\newline WS 2018/19}
+
+\date{}
+\setbeamertemplate{navigation symbols}{}
+\usetheme{PaloAlto}
+
+%personalized colortheme
+\setbeamercolor{frametitle}{bg=cyan!15!white, fg=cyan!70!green!60!white} 
+\setbeamercolor{sidebar}{bg=cyan!70!green!60!white} 
+\setbeamercolor{logo}{bg=cyan!35!white}
+\setbeamercolor*{title}{bg=cyan!15!white, fg=cyan!70!green!60!white}
+
+%i took this peace of code from 
+%http://tex.stackexchange.com/questions/89885/remove-title-and-name-from-sidebar-yet-keep-them-in-the-bottom-part-of-the-prese
+%in order to supress the long author name (where i also included the metadata) in the sidebar
+  \makeatletter
+  \setbeamertemplate{sidebar \beamer@sidebarside}%{sidebar theme}
+  {
+    \beamer@tempdim=\beamer@sidebarwidth%
+    \advance\beamer@tempdim by -6pt%
+    \insertverticalnavigation{\beamer@sidebarwidth}%
+    \vfill
+    \ifx\beamer@sidebarside\beamer@lefttext%
+    \else%
+      \usebeamercolor{normal text}%
+      \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+      \vskip2pt%
+    \fi%
+  }%
+\makeatother
+
+%i used a sidebar instead of ToC
+\begin{document}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\section{Elasticsearch}
+\begin{frame}
+\frametitle{Elasticsearch}
+\begin{itemize}
+\item it's a database
+\pause
+\item it's also a search engine (optimized for text)
+\pause
+\begin{itemize}
+\item boolean search
+\item phrase search / proximity search
+\item wildcard queries
+\item term weighting
+\item aggregation
+\end{itemize}
+\pause
+\item implemented in java, on top of lucene
+\item incredibly fast
+\item RESTful (libraries are available e.g. for Python)
+\item no-sql $\rightarrow$ schema-less $\rightarrow$ example
+\end{itemize}
+\end{frame}
+
+\section{Schema-less example}
+\begin{frame}
+\frametitle{The Pokemon Example}
+\begin{figure}
+\centering  
+\begin{subfigure}{.8\textwidth}
+    \centering  
+    \includegraphics[width=0.8\textwidth]{Pokemon1.png}
+  \caption{Charmander pokedex entry}
+\end{subfigure}%
+\pause
+\begin{subfigure}{.2\textwidth}
+  \centering  
+  \includegraphics[width=0.5\textwidth]{Charmander.png}
+\end{subfigure}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Pokemon Example}
+  \begin{figure}
+  \centering  
+  \begin{subfigure}{.8\textwidth}
+      \centering  
+      \includegraphics[width=0.8\textwidth]{Pokemon2.png}
+    \caption{Zigzagoon pokedex entry}
+  \end{subfigure}%
+  \pause
+  \begin{subfigure}{.2\textwidth}
+    \centering  
+    \includegraphics[width=0.8\textwidth]{Zigzagoon.png}
+  \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\section{The real power}
+\begin{frame}
+  \frametitle{ELK Stack}
+    \includegraphics[width=0.8\textwidth]{ELK.png}
+\end{frame}
+
+\section{Logstash}
+\begin{frame}
+  \frametitle{Logstash}
+  \begin{enumerate}
+   \item Logstash is a preprocessing tool 
+   \item I need to insert parts of my config file here and compare it to the python code
+  \end{enumerate}
+\end{frame}
+
+\section{Kibana}
+\begin{frame}
+  \frametitle{Kibana}
+  Kibana demo
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+  \frametitle{Conclusion}
+  \begin{enumerate}
+   \item don't confuse it with a NLP tool, it's not
+   \item not recommended for PROD $\rightarrow$ not stable
+   \item fast changes (e.g. deprecations) with releases $\rightarrow$ careful with old tutorials
+   \item remarkable $\rightarrow$ get insights into data in not time
+  \end{enumerate}
+\end{frame}
+
+
+\end{document}

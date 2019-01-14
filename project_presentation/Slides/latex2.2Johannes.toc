@@ -1,0 +1,7 @@
+\babel@toc {ngerman}{}
+\beamer@sectionintoc {1}{Elasticsearch}{2}{0}{1}
+\beamer@sectionintoc {2}{Schema-less example}{6}{0}{2}
+\beamer@sectionintoc {3}{The real power}{10}{0}{3}
+\beamer@sectionintoc {4}{Logstash}{11}{0}{4}
+\beamer@sectionintoc {5}{Kibana}{12}{0}{5}
+\beamer@sectionintoc {6}{Conclusion}{13}{0}{6}
