@@ -386,7 +386,36 @@ be recorded: most of the ufo sightings happened in the US; in 1964 there might h
 an ufo boom; lights, circles, triangles, fireballs are popular descriptions of the ufo-look;
 seattle, phoenix, portland, las vegas are the most popular cities were people claim to have seen ufos.
 
-\textbf{One of us should also show how it looks like when a filter is applied.}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{beer_hops.png}
+ \caption{Word cloud for ``hops'' field for the whole dataset on Kibana Dashboard}
+  \label{fig:beer_hops}
+\end{figure}
+
+
+Another useful feature is 'control' in Kibana dashboard. It is essentially a filter function to visualise a subset of the dataset. It is a useful interactive tool to investigate the relationships between different fields in the dataset.
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{beer_control.png}
+ \caption{Example control on Kibana Dashboard}
+  \label{fig:beer_control}
+\end{figure}
+
+For example, the most common hops in whole beer recipe dataset is ``cascade''. (see Figure \ref{fig:beer_hops}) After selecting the ``Pilsner'' in the ``Fermentable'' filter (Figure \ref{fig:beer_control}), the distribution of the resulting dataset is altered, showing that the most common hops for ``Pilsner'' is ``saaz'', instead of ``cascade'' (Figure \ref{fig:beer_hops_after}). 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{beer_hops_after.png}
+ \caption{Hops distribution changed after a filter is applied}
+  \label{fig:beer_hops_after}
+\end{figure}
+
+
 
 \section{Conclusion}
 Fast, Powerfull bla bla bla...
