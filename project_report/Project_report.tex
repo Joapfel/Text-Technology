@@ -384,9 +384,14 @@ dataset grows.
 \\
 \\
 Below that on the left there is a pie chart that shows the distribution over Countries:
-green = America, blue = Canada, purple = Great Britain, purple = Australia, red = Germany (not visible anymore on the PDF).
-\\
-\\
+\begin{itemize}
+  \item green = America
+  \item blue = Canada
+  \item purple = Great Britain
+  \item purple = Australia
+  \item red = Germany (not visible anymore on the PDF)
+\end{itemize}
+
 On the right of the pie chart there is a frequency-based word cloud, showing the different UFO shapes that 
 people described during the sighting. It should be mentioned that it is only possible to
 use a word cloud properly on (pseudo) categorical values - only one word per field.
@@ -406,8 +411,7 @@ be recorded: most of the UFO sightings happened in the US; in 1964 there might h
 an UFO boom; lights, circles, triangles, fireballs are popular descriptions of the look of UFOs;
 Western cities like Seattle, Phoenix, Portland, and Las Vegas are the most popular cities were people claim
 to have seen UFOs.
-\\
-\\
+
 \subsubsection{Political and Census Visualizations}
 \begin{figure}
   \centering
@@ -444,7 +448,11 @@ drop-down menus.
 \end{figure}
 
 This is a single example. One might bucket counties by their voting records or their Hispanic population and
-derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. 
+derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. On the
+final page of this report are more examples of Kibana visualizations, such as a map of the United States
+in which each state is colored based on its "partisan lean" (provided by \href{https://github.com/fivethirtyeight/data/blob/master/partisan-lean/fivethirtyeight_partisan_lean_STATES.csv}{FiveThirtyEight}):
+the greener the state, the more likely it is to elect Democrats to public office; the redder, the more likely
+it is to vote for Republicans.
 
 \subsubsection{Control and Interactive Dashboards}
 \begin{figure}[!hb]
@@ -490,5 +498,11 @@ and how they can be leveraged to the benefit of real world applications.
 
 \section{Personal Reflection}
 Here we can put our personal opinions and say what we liked most.
+
+\begin{figure}
+   \includegraphics[width=\linewidth]{partisan_lean.png} 
+   \includegraphics[width=\linewidth]{politics_misc.png} 
+   \caption{\label{politics_examples}Example visualizations based on politics dataset}
+\end{figure}
 
 \end{document}
