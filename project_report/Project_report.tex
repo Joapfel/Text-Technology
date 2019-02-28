@@ -319,73 +319,75 @@ of the term.
    \includegraphics[height=0.5\textwidth]{kibana_script.png} 
    \caption{\label{json_script}This is an visualization in the editive mode.}
 \end{figure}
-In the previous Section the speed, flexibility and powerfull search capability
-were shown. But technical power alone is rarely enough. In order to work with data 
-one has to have a good intuition about it. And since the human brain is better in 
-interpreting images than a matrix of values a common approach for better understanding data 
+In the previous section showed the speed, flexibility, and powerful search capabilities
+of the ELK stack. Yet technical power alone rarely suffices. In order to work with data 
+one has to have a good intuition of it. Since the human brain is better at 
+interpreting images than a matrix of values, a common approach for better understanding data 
 is to visualize it.
 \\
-Kibana is a simple to use and still powerfull visualization tool which it build on top 
-of Elasticsearch. It comes with a lot of inbuild visualizations: Histograms, 
-Pie Charts, Lines, Heat Maps, Geographical Maps etc. These visualizations can be organized
+Kibana is a simple to use, yet powerful visualization tool that is built on top 
+of Elasticsearch. It comes with a lot of built-in visualizations: histograms, 
+pie charts, lines, heat maps, geographical maps, etc. These visualizations can be organized
 in dashboards. The dashboards are interactive, which means if one clicks on 
-a value in a visualization (e.g. the biggest part in a Pie Chart) this value is used
-as a filter for all visualizations which are part of the same dashboard.
-This functionality makes explorative descriptive statistics really convinient, 
-because different aspects of the data can be looked at by playing and clicking
+a value in a visualization (e.g. the biggest part in a pie chart) this value is used
+as a filter for all visualizations that are part of the same dashboard.
+This functionality makes exploring descriptive statistics really convenient 
+because different aspects of the data can be looked at by experimenting and clicking
 around in the dashboard.
 \\
-Additionally Kibana provides a lot more functionalities like Machine Learning
-based anomaly detection, customizable visualizations which are not in the scope of this report.
+Additionally Kibana provides further functionalities, like Machine Learning-based anomaly detection or customizable visualizations, that are not in the scope of this report.
 \\
-But one additional functionality has to be mentioned at this point. It is the 
-possibility to create online scripts, which process data on the fly. In Figure \ref{json_script} 
-the \textit{JSON Input} field is an example for such a script. This script turns seconds
-into minutes by dividing the current value by 60. That way the original data does not
-need to be touched and the calculation is done only for the visualization. The drawback of this
-scripting functionality is, that the script needs to be run every time the visualization is loaded.
+But one additional functionality must be mentioned at this point. It is the 
+ability to create online scripts that process data on the fly. In Figure \ref{json_script} 
+the \textit{JSON Input} field is an example of such a script. This script turns seconds
+into minutes by dividing the current value by sixty. That way the original data need not
+be touched and the calculation is done only for the visualization. The drawback of this
+scripting functionality is that the script needs to be run every time the visualization is loaded.
 For huge datasets this can lead to long waiting times, especially when the scripting 
 functionality is used in many visualizations.
 \\
 \\
-In Figure \ref{ufo_dashboard} different visualizations are shown for the ufo dataset,
+In Figure \ref{ufo_dashboard} different visualizations are shown for the UFO dataset,
 which are organized into a dashboard:
 \\
 In the upper left, a geographical visualization is shown. It marks all the points
-where ufos were seen. Bigger circles are collections of datapoints. This can be seen
-by zooming in, then the bigger circle is devided into multiple smaller circles.
+where UFOs were seen. Bigger circles are collections of data points. This can be seen
+by zooming in, then the bigger circle is divided into multiple smaller circles.
 \\
 In the upper right a histogram and a line is shown. The histogram describes
-how many ufo sightings were recorded per year. The line is the average time 
-(in minutes) per year that ufo's were seen\footnote{The line is not on the same scale as the histogram.
+how many UFO sightings were recorded per year. The line is the average time 
+(in minutes) per year that UFOs were seen\footnote{The line is not on the same scale as the histogram.
 In order to see the actual minutes-values one needs to hover with the mouse to the point of interest.}.
 Since the line visualization contains an outlier around 1964, this would
-be a typical scenario to apply a filter by clicking on the outlier and inspecting the results of the other visualizations. That way
-it could be investigated if something interesting happened in 1964 or if this was
-an error during data collection.
+be an ideal scenario for applying a filter by clicking on the outlier and inspecting the results of the other
+visualizations. That way
+it could be investigated whether something interesting happened in 1964 or
+an error occurred during data collection.
 \\
 The next visualization below is just a simple count of data points (size of the dataset). 
 In a live application this would be more interesting, because one could inspect how the 
 dataset grows.
 \\
-Below that on the left there is a Pie Chart which shows the distribution over Countries:
-Green = America, Blue = Canada, Violett = Great Britain, Purple = Australia, Red = Germany (not visible anymore on the PDF).
+Below that on the left there is a pie chart that shows the distribution over Countries:
+green = America, blue = Canada, purple = Great Britain, purple = Australia, red = Germany (not visible anymore on the PDF).
 \\
-On the right of the Pie Chart there is a frequency based wordcloud, showing the different ufo shapes which 
-people described during the ufo sighting. It has to be mentioned that it is only possible to
-use a wordloud properly on (pseudo) categorical values - only one word per field. There is not preprocessing step
+On the right of the pie chart there is a frequency-based word cloud, showing the different UFO shapes that 
+people described during the sighting. It should be mentioned that it is only possible to
+use a word cloud properly on (pseudo) categorical values - only one word per field.
+There is no preprocessing step
 (like tokenization) involved.
 \\
-Below on the left is again a wordcloud which shows roughly the distribution over cities.
+Below on the left is again a word cloud that shows roughly the distribution over cities.
 \\
-To the right of the city wordcloud, the information about cities is encoded as a 
-heatmap (just for the sake of showing exploring different visualizations).
+To the right of the city word cloud, the information about cities is encoded as a 
+heat map (just for the sake of showing exploring different visualizations).
 \\
 \\
 As a quick summary and interpretation of the visualization the following can 
-be recorded: most of the ufo sightings happened in the US; in 1964 there might have been 
-an ufo boom; lights, circles, triangles, fireballs are popular descriptions of the ufo-look;
-seattle, phoenix, portland, las vegas are the most popular cities were people claim to have seen ufos.
+be recorded: most of the UFO sightings happened in the US; in 1964 there might have been 
+an UFO boom; lights, circles, triangles, fireballs are popular descriptions of the look of UFOs;
+Western cities like Seattle, Phoenix, Portland, and Las Vegas are the most popular cities were people claim
+to have seen UFOs.
 
 
 \begin{figure}
@@ -396,7 +398,7 @@ seattle, phoenix, portland, las vegas are the most popular cities were people cl
 \end{figure}
 
 
-Another useful feature is 'control' in Kibana dashboard. It is essentially a filter function to visualise a subset of the dataset. It is a useful interactive tool to investigate the relationships between different fields in the dataset.
+Another useful feature is 'control' in Kibana dashboard. It is essentially a filter function to visualize a subset of the dataset. It is a useful interactive tool to investigate the relationships between different fields in the dataset.
 
 
 
@@ -420,12 +422,12 @@ For example, the most common hops in whole beer recipe dataset is ``cascade''. (
 
 \section{Conclusion}
 Perhaps the thirteenth page of a report is not such a convincing time to write about brevity, but it is
-indeed just that — the relative conciseness of this report — that best illustrates the power of Elasticsearch
-and the ELK stack more broadly. In just a few pages we were able to take various raw data, manipulate it to
-our liking, tease out both superficial and complex features, and present it all in a manner
+indeed just that — the relative conciseness of this report — that best testifies to the power of Elasticsearch
+and the ELK stack more broadly. In just a few pages we were able to take various raw data, manipulate them to
+our liking, tease out both superficial and complex features thereof, and present it all in a manner
 aesthetically appealing and informationally dense yet nonetheless instructive. What's more, our results
 lend themselves to easy replication in the future.
-
+\\
 Yet many of Elasticsearch's most appealing properties do not properly come through in a written report.
 Such marquee features as the breakneck speed of its Lucene-based back-end or its impressive scalability can
 simply not be done justice here on the page but are best appreciated during implementation. However, we
