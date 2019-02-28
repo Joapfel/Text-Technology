@@ -458,30 +458,43 @@ the greener the state, the more likely it is to elect Democrats to public office
 it is to vote for Republicans.
 
 \subsubsection{Control and Interactive Dashboards (Beer Dataset)}
-\begin{figure}[!hb]
-  \centering
+
+Elasticsearch provides a very convenient platform for data ingestion and storage. In order to make sense of a dataset containing a large amount of data, data scientists use different visualisation methods to analyse it. Kibana provides an integrated environment for data scientists to analyse and visualise a dataset.
+
+As seen above, visualisation in Kibana could be seen a graphical representation of aggregation result of Elasticsearch. In the beer recipe dataset, For example, if we aggregate the beer dataset according to the ``Fermentable'' field and use the result to plot a bar chart in Kibana, we could obtain a result such as Figure \ref{fig:beer_fermentables}.
+
+\begin{figure}[!htb]
+\includegraphics[width=\linewidth]{beer_fermentables.png}
+ \caption{A bar chart on Kibana Dashboard for the beer recipe dataet}
+  \label{fig:beer_fermentables}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
   \includegraphics[width=\linewidth]{beer_hops.png}
- \caption{Word cloud for ``hops'' field for the whole dataset on Kibana Dashboard}
+ \caption{Word cloud for ``hops'' field for the whole beer recipe dataset on Kibana Dashboard}
   \label{fig:beer_hops}
 \end{figure}
 
 Another useful feature is 'control' in Kibana dashboard. It is essentially a filter function to visualize a subset of the dataset. It is a useful interactive tool to investigate the relationships between different fields in the dataset.
 
-\begin{figure}
-  \centering
+\begin{figure}[!htb]
+\centering
   \includegraphics[width=\linewidth]{beer_control.png}
- \caption{Example control on Kibana Dashboard}
+ \caption{Control panel on beer recipe dashboard}
   \label{fig:beer_control}
 \end{figure}
 
 For example, the most common hops in whole beer recipe dataset is ``cascade''. (see Figure \ref{fig:beer_hops}) After selecting the ``Pilsner'' in the ``Fermentable'' filter (Figure \ref{fig:beer_control}), the distribution of the resulting dataset is altered, showing that the most common hops for ``Pilsner'' is ``saaz'', instead of ``cascade'' (Figure \ref{fig:beer_hops_after}). 
 
-\begin{figure}
-  \centering
+\begin{figure}[!htb]
+\centering
   \includegraphics[width=\linewidth]{beer_hops_after.png}
  \caption{Hops distribution changed after a filter is applied}
   \label{fig:beer_hops_after}
 \end{figure}
+
+Data pre-processing is a very important topic in data engineering. It is a common misunderstanding that data could be pushed into a schemaless database without cleaning. Although it is not necessary to use data mapping to define the data type of every field in Elasticsearch, the resulting aggregation would not be as accurate if a data field is not represented in the correct data type and in a unified way. For example, in the raw data of the beer recipe in JSON format, fields containing numbers, such as ``ABV'', could be represented in a string, e.g. ``7\%''. If we want to get any meaningful aggregation for this field, the mapping must be specified to be an integer or double during the design phase. The ``\%'' symbol has also to be stripped before the entry is pushed to Elasticsearch. Therefore, data processing and cleaning is, surprisingly, the most time-consuming part of building a visualization. Without all these efforts the power of Kibana could not be utilised. 
 
 \section{Conclusion}
 Perhaps page \thepage\ of this report is a less than compelling time to boast of brevity, but it is
