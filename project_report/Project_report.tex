@@ -40,14 +40,16 @@ As a result we used different datasets to illustrate the various capabilities of
 \section{The ELK Stack}
 The ELK Stack is comprised of Elasticsearch, Logstash, and Kibana.
 Often when people refer to Elasticsearch on its own, they are actually referring to
-the combination of these three technologies. Together they form a pipeline where
-Elasticsearch as a database is the core technology.
+the combination of these three technologies. Together they form a pipeline wherein
+the Elasticsearch database is the core technology.
+\\
 \\
 If we follow the chronological flow of data, Logstash is the first section of the
-stack that we encounter. It servers as a preprocessing tool that helps to properly shape the data.
+stack that we encounter. It serves as a preprocessing tool that helps to properly shape the data.
 The second tool is Elasticsearch itself, which stores and indexes the data.
 The third tool is Kibana, which provides a Graphical User Interface (GUI) to Elasticsearch's data 
 and is responsible for visualizing the data. 
+\\
 \\
 The ELK Stack is available for personal use free of charge. It can also be 
 employed professionally by using it as Software as a Service (SaaS) in the cloud
@@ -66,46 +68,52 @@ As mentioned above, we can view Logstash as a preprocessing tool.
 It prepares the data and sends the transformed data to a specified 
 Elasticsearch instance.
 It can also receive data from many kinds of sources in many formats from databases, HTTP-streams, 
-.csv files, JSON files, Logfiles, among others.
-\\
-Filters help to parse and transform the data into a
+.csv files, JSON files, Logfiles, among others. Filters help to parse and transform the data into a
 desired format, making it possible to achieve more structure, consistency,
 readability, etc.
+\\
 \\
 In the next paragraph the configuration file which was used for the
 UFO-sighting project will be explained (see Figure \ref{logstash_config_file}).
 \\
-The UFO-sightings are stored in a .csv file. As such the configuration file 
-contains definitions specific for the .csv format.
 \\
-In lines 0-5 the input is defined (here the .csv file). Once dynamically read 
-from the standard input \footnote{this means that the path to the file needs to be passed as an argument when running logstash} (stdin),
+The UFO-sightings are stored in a .csv file. As such the configuration file 
+contains definitions specific for the .csv format. In lines 0-5 the input is defined (here the .csv file).
+Once dynamically read from the standard input \footnote{this means that the path to the file needs to be
+passed as an argument when running logstash} (stdin),
 and once with a hard-coded path to the .csv file.
+\\
 \\
 In lines 7-31 different filters are defined that deal with the content 
 of the .csv file:
+\\
 \\
 The .csv filter (lines 8-12) specifies the structure of the original .csv file.
 In this case the .csv file is comma separated (as opposed to tab separated),
 has the following columns (see image), and the header is skipped because
 it is not part of the actual data.
 \\
+\\
 The mutate filters (lines 13-27) actually applied some changes to the data:
 In line 14 we see a new field \textit{location} is constructed out of the 
 existing \textit{latitude} and \textit{longitude} fields. The reason for 
 that is that in order to represent geo-coordinates Elasticsearch requires geographical data to be stored as a tuple in a single field instead of their own separate fields.
+\\
 \\
 On line 15 a couple of fields are removed, which we deemed irrelevant
 for purposes of our data analysis. For example, geographical information is now 
 stored in the \textit{location} field, so the original \textit{lalitude}- and \textit{longitude}-fields
 are not needed anymore.
 \\
+\\
 The \textit{gsup} mutation (lines 16-23) is a regular expression based string substitution.
 The first column defines the source field, the second column defines the regular expression,
 and the third field is the replacement string.
 \\
+\\
 In this case the language codes are transformed into the original country names
 just for the sake of readability.
+\\
 \\
 The last substitution is a little hack to deal with a specificity of the UFO-dataset.
 In the UFO-dataset, midnight was encoded as 24:00. However Elasticsearch's time format goes from
@@ -114,6 +122,7 @@ In the UFO-dataset, midnight was encoded as 24:00. However Elasticsearch's time 
 Since the original midnight encoding was 24:00 (end of day) it was decided to 
 remove one minute instead of adding one, such that the time still represents the end 
 of a day instead of the beginning of the next day.
+\\
 \\
 The date filter (lines 28-30) deals with different date representations.
 Elasticsearch requires a consistent date-time representation to be automatically
@@ -129,6 +138,7 @@ In line 33 debugging information is sent to the standard output (stdout) - e.g. 
 From line 34-41 the Elasticsearch target instance is defined together with the 
 index the data should be stored at. In this case (line 36) Elasticsearch
 runs locally (localhost) and the index (line 37) is called \textit{ufoindex}.
+\\
 \\
 As mentioned earlier Elasticsearch can be used as a service in the cloud. In line 
 35 an Elasticsearch target instance can be seen which was hosted on Amazons AWS Cloud-system.\footnote{A free trial was used in order to have all the material for the presentation ready in one place. The trial (and hence the url) is not active anymore.}.
@@ -325,6 +335,7 @@ one has to have a good intuition of it. Since the human brain is better at
 interpreting images than a matrix of values, a common approach for better understanding data 
 is to visualize it.
 \\
+\\
 Kibana is a simple to use, yet powerful visualization tool that is built on top 
 of Elasticsearch. It comes with a lot of built-in visualizations: histograms, 
 pie charts, lines, heat maps, geographical maps, etc. These visualizations can be organized
@@ -335,9 +346,9 @@ This functionality makes exploring descriptive statistics really convenient
 because different aspects of the data can be looked at by experimenting and clicking
 around in the dashboard.
 \\
-Additionally Kibana provides further functionalities, like Machine Learning-based anomaly detection or customizable visualizations, that are not in the scope of this report.
 \\
-But one additional functionality must be mentioned at this point. It is the 
+Additionally Kibana provides further functionalities, like Machine Learning-based anomaly detection or customizable visualizations, that are not in the scope of this report. But one additional functionality must be mentioned at this point.
+It is the 
 ability to create online scripts that process data on the fly. In Figure \ref{json_script} 
 the \textit{JSON Input} field is an example of such a script. This script turns seconds
 into minutes by dividing the current value by sixty. That way the original data need not
@@ -350,9 +361,11 @@ functionality is used in many visualizations.
 In Figure \ref{ufo_dashboard} different visualizations are shown for the UFO dataset,
 which are organized into a dashboard:
 \\
+\\
 In the upper left, a geographical visualization is shown. It marks all the points
 where UFOs were seen. Bigger circles are collections of data points. This can be seen
 by zooming in, then the bigger circle is divided into multiple smaller circles.
+\\
 \\
 In the upper right a histogram and a line is shown. The histogram describes
 how many UFO sightings were recorded per year. The line is the average time 
@@ -364,12 +377,15 @@ visualizations. That way
 it could be investigated whether something interesting happened in 1964 or
 an error occurred during data collection.
 \\
+\\
 The next visualization below is just a simple count of data points (size of the dataset). 
 In a live application this would be more interesting, because one could inspect how the 
 dataset grows.
 \\
+\\
 Below that on the left there is a pie chart that shows the distribution over Countries:
 green = America, blue = Canada, purple = Great Britain, purple = Australia, red = Germany (not visible anymore on the PDF).
+\\
 \\
 On the right of the pie chart there is a frequency-based word cloud, showing the different UFO shapes that 
 people described during the sighting. It should be mentioned that it is only possible to
@@ -377,7 +393,9 @@ use a word cloud properly on (pseudo) categorical values - only one word per fie
 There is no preprocessing step
 (like tokenization) involved.
 \\
+\\
 Below on the left is again a word cloud that shows roughly the distribution over cities.
+\\
 \\
 To the right of the city word cloud, the information about cities is encoded as a 
 heat map (just for the sake of showing exploring different visualizations).
@@ -390,31 +408,7 @@ Western cities like Seattle, Phoenix, Portland, and Las Vegas are the most popul
 to have seen UFOs.
 \\
 \\
-Indeed, the range of visualizations is wide. Our political/census dataset allowed us to explore the depth
-of features that Kibana provides. We experimented with many kinds of aggregation (detailed above). For
-reference, each data point in this dataset is a county, or a subdivision of a US state. The attributes of
-these data points are various census or electoral information about those counties, such as the vote
-distribution of various national elections or the percentage of population that is African-American. Kibana
-allows us to visualize the data based on any number of aggregations. We might aggregate by state or the
-states by the percentages of their populations that live in rural areas on the x-axis, then plot their
-presidential voting records on the y-axis. This gives us insight into the voting trends of rural voters.
-\\
-\\
-These aggregations can be easily created in the Kibana UI via simple drop-down menus and other tool bars
-pictured below. For this example, data points are aggregated based on ``Terms``, here the field ``State``,
-which every "county" data point contains. The effect is that of SQL's ``GROUP BY`` keyword. All counties are
-grouped on their state (or district in the case of Washington, D.C.). The aggregations are ordered by the
-average rural percentage. (Washington, D.C. is omitted as it is a single city and as such its rural
-population is effectively zero. On the y-axis, the two fields represented the percentage of that went to
-Barack Obama in the 2012 Presidential Elections and that that went to Donald Trump in 2016 are plotted. This
-allows us to see the voting trends of rural voters and we accomplished it with roughly half a dozen simple
-drop-down menus.
-\\
-\\
-This is a single example. One might bucket counties by their voting records or their Hispanic population and
-derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. 
-
-
+\subsubsection{Political and Census Visualizations}
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{rural_voters_visualization.png}
@@ -422,15 +416,37 @@ derive data from those buckets. One could aggregate by state and sub-aggregate b
   \label{fig:rural_voter_trends}
 \end{figure}
 
-
-\begin{figure}
+Indeed, the range of visualizations is wide. Our political/census dataset allowed us to explore the depth
+of features that Kibana provides. We experimented with many kinds of aggregation (detailed above). For
+reference, each data point in this dataset is a county, or a subdivision of a US state. (Figure \ref{fig:rural_voter_trends})The attributes of
+these data points are various census or electoral information about those counties, such as the vote
+distribution of various national elections or the percentage of population that is African-American. Kibana
+allows us to visualize the data based on any number of aggregations. We might aggregate by state then the
+states by the percentages of their populations that live in rural areas on the x-axis, then plot their
+presidential voting records on the y-axis. This gives us insight into the voting trends of rural voters.
+\\
+\\
+These aggregations can be easily created in the Kibana UI via simple drop-down menus and other tool bars
+here pictured (Figure \ref{fig:rural_voters_settings}) For this example, data points are aggregated based on ``Terms``, here the field ``State``,
+which every "county" data point contains. The effect is that of SQL's ``GROUP BY`` keyword. All counties are
+grouped on their state (or district in the case of Washington, D.C.). The aggregations are ordered by the
+average rural percentage. (Washington, D.C. is omitted as it is a single city and as such its rural
+population is effectively zero. On the y-axis, the two fields represented the percentage of that went to
+Barack Obama in the 2012 Presidential Elections and that that went to Donald Trump in 2016 are plotted. This
+allows us to see the voting trends of rural voters and we accomplished it with roughly half a dozen simple
+drop-down menus.
+\begin{figure}[!htb]
   \centering
-  \includegraphics[width=\linewidth]{rural_voters_settings.png}
+  \includegraphics[height=0.5\textwidth]{rural_voters_settings.png}
  \caption{The settings of rural voter visualization}
   \label{fig:rural_voters_settings}
 \end{figure}
 
-\begin{figure}
+This is a single example. One might bucket counties by their voting records or their Hispanic population and
+derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. 
+
+\subsubsection{Control and Interactive Dashboards}
+\begin{figure}[!hb]
   \centering
   \includegraphics[width=\linewidth]{beer_hops.png}
  \caption{Word cloud for ``hops'' field for the whole dataset on Kibana Dashboard}
@@ -439,24 +455,24 @@ derive data from those buckets. One could aggregate by state and sub-aggregate b
 
 Another useful feature is 'control' in Kibana dashboard. It is essentially a filter function to visualize a subset of the dataset. It is a useful interactive tool to investigate the relationships between different fields in the dataset.
 
-% \begin{figure}
-%   \centering
-%   \includegraphics[width=\linewidth]{beer_control.png}
-%  \caption{Example control on Kibana Dashboard}
-%   \label{fig:beer_control}
-% \end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{beer_control.png}
+ \caption{Example control on Kibana Dashboard}
+  \label{fig:beer_control}
+\end{figure}
 
 For example, the most common hops in whole beer recipe dataset is ``cascade''. (see Figure \ref{fig:beer_hops}) After selecting the ``Pilsner'' in the ``Fermentable'' filter (Figure \ref{fig:beer_control}), the distribution of the resulting dataset is altered, showing that the most common hops for ``Pilsner'' is ``saaz'', instead of ``cascade'' (Figure \ref{fig:beer_hops_after}). 
 
-% \begin{figure}
-%   \centering
-%   \includegraphics[width=\linewidth]{beer_hops_after.png}
-%  \caption{Hops distribution changed after a filter is applied}
-%   \label{fig:beer_hops_after}
-% \end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{beer_hops_after.png}
+ \caption{Hops distribution changed after a filter is applied}
+  \label{fig:beer_hops_after}
+\end{figure}
 
 \section{Conclusion}
-Perhaps the fourteenth page of a report is not such a convincing time to boast of brevity, but it is
+Perhaps page \thepage\ of this report is not such a convincing time to boast of brevity, but it is
 indeed just that — the relative conciseness of this report — that best testifies to the power of Elasticsearch
 and the ELK stack more broadly. In the space of just a few pages we were able to take various raw data,
 manipulate them to our liking, tease out both superficial and complex features thereof, and present it all in
