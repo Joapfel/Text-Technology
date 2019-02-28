@@ -435,18 +435,19 @@ These aggregations can be easily created in the Kibana UI via simple drop-down m
 here pictured (Figure \ref{fig:rural_voters_settings}) For this example, data points are aggregated based on ``Terms``, here the field ``State``,
 which every "county" data point contains. The effect is that of SQL's ``GROUP BY`` keyword. All counties are
 grouped on their state (or district in the case of Washington, D.C.). The aggregations are ordered by the
-average rural percentage. (Washington, D.C. is omitted as it is a single city and as such its rural
-population is effectively zero. On the y-axis, the two fields represented the percentage of that went to
-Barack Obama in the 2012 Presidential Elections and that that went to Donald Trump in 2016 are plotted. This
-allows us to see the voting trends of rural voters and we accomplished it with roughly half a dozen simple
-drop-down menus.
+average rural percentage, excepting Washington, D.C. as it is a single city and as such its rural
+population is effectively zero. On the y-axis, the two fields represent the percentage of the vote that went to
 \begin{figure}[!htb]
   \centering
   \includegraphics[height=0.5\textwidth]{rural_voters_settings.png}
  \caption{The settings of rural voter visualization}
   \label{fig:rural_voters_settings}
 \end{figure}
-
+Barack Obama in the 2012 Presidential Elections and that that went to Donald Trump in 2016. This
+allows us to see the voting trends of rural voters and we accomplished it with roughly half a dozen simple
+drop-down menus.
+\\
+\\
 This is a single example. One might bucket counties by their voting records or their Hispanic population and
 derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. On the
 final page of this report are more examples of Kibana visualizations, such as a map of the United States
