@@ -38,7 +38,7 @@ As a result we used different datasets to illustrate the various capabilities of
 \end{itemize}
 
 \section{The ELK Stack}
-The ELK Stack stands for Elasticsearch, Logstash, and Kibana.
+The ELK Stack is comprised of Elasticsearch, Logstash, and Kibana.
 Often when people refer to Elasticsearch on its own, they are actually referring to
 the combination of these three technologies. Together they form a pipeline where
 Elasticsearch as a database is the core technology.
@@ -313,13 +313,13 @@ of the term.
 \begin{figure}
    \includegraphics[height=0.5\textwidth]{dashboard1.png} 
    \includegraphics[height=0.242\textwidth]{dashboard2.png} 
-   \caption{\label{ufo_dashboard}The dashboard for the Ufo-dataset}
+   \caption{\label{ufo_dashboard}The dashboard for the UFO-dataset}
 \end{figure}
 \begin{figure}
    \includegraphics[height=0.5\textwidth]{kibana_script.png} 
-   \caption{\label{json_script}This is an visualization in the editive mode.}
+   \caption{\label{json_script}This is an visualization in edit mode.}
 \end{figure}
-In the previous section showed the speed, flexibility, and powerful search capabilities
+The previous section showed the speed, flexibility, and powerful search capabilities
 of the ELK stack. Yet technical power alone rarely suffices. In order to work with data 
 one has to have a good intuition of it. Since the human brain is better at 
 interpreting images than a matrix of values, a common approach for better understanding data 
@@ -388,7 +388,47 @@ be recorded: most of the UFO sightings happened in the US; in 1964 there might h
 an UFO boom; lights, circles, triangles, fireballs are popular descriptions of the look of UFOs;
 Western cities like Seattle, Phoenix, Portland, and Las Vegas are the most popular cities were people claim
 to have seen UFOs.
+\\
+\\
+Indeed, the range of visualizations is wide. Our political/census dataset allowed us to explore the depth
+of features that Kibana provides. We experimented with many kinds of aggregation (detailed above). For
+reference, each data point in this dataset is a county, or a subdivision of a US state. The attributes of
+these data points are various census or electoral information about those counties, such as the vote
+distribution of various national elections or the percentage of population that is African-American. Kibana
+allows us to visualize the data based on any number of aggregations. We might aggregate by state or the
+states by the percentages of their populations that live in rural areas on the x-axis, then plot their
+presidential voting records on the y-axis. This gives us insight into the voting trends of rural voters.
+\\
+\\
+These aggregations can be easily created in the Kibana UI via simple drop-down menus and other tool bars
+pictured below. For this example, data points are aggregated based on ``Terms``, here the field ``State``,
+which every "county" data point contains. The effect is that of SQL's ``GROUP BY`` keyword. All counties are
+grouped on their state (or district in the case of Washington, D.C.). The aggregations are ordered by the
+average rural percentage. (Washington, D.C. is omitted as it is a single city and as such its rural
+population is effectively zero. On the y-axis, the two fields represented the percentage of that went to
+Barack Obama in the 2012 Presidential Elections and that that went to Donald Trump in 2016 are plotted. This
+allows us to see the voting trends of rural voters and we accomplished it with roughly half a dozen simple
+drop-down menus.
+\\
+\\
+This is a single example. One might bucket counties by their voting records or their Hispanic population and
+derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. 
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{rural_voters_visualization.png}
+ \caption{Voting trends of states based on their rural populations}
+  \label{fig:rural_voter_trends}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{rural_voters_settings.png}
+ \caption{The settings of rural voter visualization}
+  \label{fig:rural_voters_settings}
+\end{figure}
 
 \begin{figure}
   \centering
@@ -397,42 +437,39 @@ to have seen UFOs.
   \label{fig:beer_hops}
 \end{figure}
 
-
 Another useful feature is 'control' in Kibana dashboard. It is essentially a filter function to visualize a subset of the dataset. It is a useful interactive tool to investigate the relationships between different fields in the dataset.
 
-
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{beer_control.png}
- \caption{Example control on Kibana Dashboard}
-  \label{fig:beer_control}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=\linewidth]{beer_control.png}
+%  \caption{Example control on Kibana Dashboard}
+%   \label{fig:beer_control}
+% \end{figure}
 
 For example, the most common hops in whole beer recipe dataset is ``cascade''. (see Figure \ref{fig:beer_hops}) After selecting the ``Pilsner'' in the ``Fermentable'' filter (Figure \ref{fig:beer_control}), the distribution of the resulting dataset is altered, showing that the most common hops for ``Pilsner'' is ``saaz'', instead of ``cascade'' (Figure \ref{fig:beer_hops_after}). 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{beer_hops_after.png}
- \caption{Hops distribution changed after a filter is applied}
-  \label{fig:beer_hops_after}
-\end{figure}
-
-
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=\linewidth]{beer_hops_after.png}
+%  \caption{Hops distribution changed after a filter is applied}
+%   \label{fig:beer_hops_after}
+% \end{figure}
 
 \section{Conclusion}
-Perhaps the thirteenth page of a report is not such a convincing time to write about brevity, but it is
+Perhaps the fourteenth page of a report is not such a convincing time to boast of brevity, but it is
 indeed just that — the relative conciseness of this report — that best testifies to the power of Elasticsearch
-and the ELK stack more broadly. In just a few pages we were able to take various raw data, manipulate them to
-our liking, tease out both superficial and complex features thereof, and present it all in a manner
-aesthetically appealing and informationally dense yet nonetheless instructive. What's more, our results
-lend themselves to easy replication in the future.
+and the ELK stack more broadly. In the space of just a few pages we were able to take various raw data,
+manipulate them to our liking, tease out both superficial and complex features thereof, and present it all in
+a manner both aesthetically appealing and informationally dense without sacrificing the complexity or nuance
+of the findings. What's more, our results lend themselves to easy replication in the future. It is these
+reasons, among a plethora of others, that have caught the attention of industry executives and academics.
+\\
 \\
 Yet many of Elasticsearch's most appealing properties do not properly come through in a written report.
-Such marquee features as the breakneck speed of its Lucene-based back-end or its impressive scalability can
-simply not be done justice here on the page but are best appreciated during implementation. However, we
+Such marquee features as the breakneck speed of its Lucene-based back-end or its impressive scalability
+simply cannot be done justice here on the page but are best appreciated during implementation. However, we
 believe that the above précis of our research sufficiently demonstrates the many advantages of Elasticsearch
-and how they can be used in real world applications.
+and how they can be leveraged to the benefit of real world applications.
 
 \section{Personal Reflection}
 Here we can put our personal opinions and say what we liked most.
