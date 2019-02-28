@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman, english]{babel}
 
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
 \usepackage{tikz-qtree-compat}
@@ -16,14 +16,14 @@
 
 \begin{document}
 \maketitle
-
+\tableofcontents
 
 \section{Elasticsearch Project}
-Why did we choose Elasticsearch? "You know, for search."
+Why did we choose Elasticsearch? “You know, for search.”
 \\
 \\
 But seriously, Elasticsearch is a state of the art tool. It has seen extensive use in 
-research and industry applications alike. This should be reason enough. Hearing the buzzword "Elasticsearch" 
+research and industry applications alike. This should be reason enough. Hearing the buzzword “Elasticsearch”
 certainly motivated us to move in this direction. The real fascination, however, came from watching
 introductory YouTube videos about Elasticsearch. Most people were so excited while talking about it that we  were convinced of its power before ever trying it out.
 \\  
@@ -153,7 +153,7 @@ The following query and search examples were made with the beer dataset.
    \caption{\label{beer_query_language}Example for the Elasticsearch Query Language} 
 \end{figure}
 Elastic search queries use a structure similar to JSON (see Figure \ref{beer_query_language}).
-All features of the query are nested within within the “query” field, 
+All features of the query are nested within the “query” field, 
 and sub-fields such as “match”, “bool”, and “wildcard” are 
 there to match the needs of the user. 
 Within the query, filters, modifications, and precision adjustments 
@@ -321,14 +321,15 @@ of the term.
 
 \subsection{Kibana}
 \begin{figure}
+   \includegraphics[height=0.5\textwidth]{kibana_script.png} 
+   \caption{\label{json_script}This is an visualization in edit mode.}
+\end{figure}
+\begin{figure}
    \includegraphics[height=0.5\textwidth]{dashboard1.png} 
    \includegraphics[height=0.242\textwidth]{dashboard2.png} 
    \caption{\label{ufo_dashboard}The dashboard for the UFO-dataset}
 \end{figure}
-\begin{figure}
-   \includegraphics[height=0.5\textwidth]{kibana_script.png} 
-   \caption{\label{json_script}This is an visualization in edit mode.}
-\end{figure}
+
 The previous section showed the speed, flexibility, and powerful search capabilities
 of the ELK stack. Yet technical power alone rarely suffices. In order to work with data 
 one has to have a good intuition of it. Since the human brain is better at 
@@ -358,6 +359,7 @@ For huge datasets this can lead to long waiting times, especially when the scrip
 functionality is used in many visualizations.
 \\
 \\
+\subsubsection{Ufo Sightings Visualizations}
 In Figure \ref{ufo_dashboard} different visualizations are shown for the UFO dataset,
 which are organized into a dashboard:
 \\
@@ -403,7 +405,7 @@ Below on the left is again a word cloud that shows roughly the distribution over
 \\
 \\
 To the right of the city word cloud, the information about cities is encoded as a 
-heat map (just for the sake of showing exploring different visualizations).
+heat map (just for the sake of exploring different visualizations).
 \\
 \\
 As a quick summary and interpretation of the visualization the following can 
@@ -433,7 +435,7 @@ presidential voting records on the y-axis. This gives us insight into the voting
 \\
 These aggregations can be easily created in the Kibana UI via simple drop-down menus and other tool bars
 here pictured (Figure \ref{fig:rural_voters_settings}) For this example, data points are aggregated based on ``Terms``, here the field ``State``,
-which every "county" data point contains. The effect is that of SQL's ``GROUP BY`` keyword. All counties are
+which every “county” data point contains. The effect is that of SQL's ``GROUP BY`` keyword. All counties are
 grouped on their state (or district in the case of Washington, D.C.). The aggregations are ordered by the
 average rural percentage, excepting Washington, D.C. as it is a single city and as such its rural
 population is effectively zero. On the y-axis, the two fields represent the percentage of the vote that went to
@@ -451,11 +453,11 @@ drop-down menus.
 This is a single example. One might bucket counties by their voting records or their Hispanic population and
 derive data from those buckets. One could aggregate by state and sub-aggregate by the voting records. On the
 final page of this report are more examples of Kibana visualizations, such as a map of the United States
-in which each state is colored based on its "partisan lean" (provided by \href{https://github.com/fivethirtyeight/data/blob/master/partisan-lean/fivethirtyeight_partisan_lean_STATES.csv}{FiveThirtyEight}):
+in which each state is colored based on its “partisan lean” (provided by \href{https://github.com/fivethirtyeight/data/blob/master/partisan-lean/fivethirtyeight_partisan_lean_STATES.csv}{FiveThirtyEight}):
 the greener the state, the more likely it is to elect Democrats to public office; the redder, the more likely
 it is to vote for Republicans.
 
-\subsubsection{Control and Interactive Dashboards}
+\subsubsection{Control and Interactive Dashboards (Beer Dataset)}
 \begin{figure}[!hb]
   \centering
   \includegraphics[width=\linewidth]{beer_hops.png}
